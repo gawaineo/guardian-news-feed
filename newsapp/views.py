@@ -1,4 +1,4 @@
-from flask import render_template
+from flask import render_template, request, url_for
 import urllib2
 import json
 
@@ -15,21 +15,42 @@ for article in articles:
 	print 
 """
 
-@app.route('/')
+EDITIONS_URL = 'http://content.guardianapis.com/editions?q=%s&api-key=uzrj7hgs927dg7qx8s2bqp8q'
+SECTIONS_URL = 'http://content.guardianapis.com/sections?&api-key=uzrj7hgs927dg7qx8s2bqp8q'
+SEARCH_CONTENT_URL = "http://content.guardianapis.com/search?q=%s&api-key=uzrj7hgs927dg7qx8s2bqp8q"
+
+@app.route('/', methods=['GET'])
 def report_news():
-	req = urllib2.Request('http://content.guardianapis.com/search?q=trump&api-key=uzrj7hgs927dg7qx8s2bqp8q')
-	response = urllib2.urlopen(req)
-	the_page = json.loads(response.read())
+	editions_req = urllib2.Request(EDITIONS_URL % '')
+	sections_req = urllib2.Request(SECTIONS_URL)
+
+	editions_response = urllib2.urlopen(editions_req)
+	sections_response = urllib2.urlopen(sections_req)
+
+	editions_content = json.loads(editions_response.read())
+	sections_content = json.loads(sections_response.read())
+
+	search_bar_value = request.args.get('search_q')
 
 	articles = []
 
-	for result in the_page['response']['results']:
+	if search_bar_value is not None:
+		search_req = urllib2.Request(SEARCH_CONTENT_URL % search_bar_value)
+		search_response = urllib2.urlopen(search_req)
+		search_content = json.loads(search_response.read())
+	else:
+		search_req = urllib2.Request(SEARCH_CONTENT_URL % '')
+		search_response = urllib2.urlopen(search_req)
+		search_content = json.loads(search_response.read())
+
+	for result in search_content['response']['results']:
 		articles.append(result)
 		#print result
+	
 
-	article = articles[0]
-	#
-	return render_template('index.html', articles=articles)
+
+	return render_template('index.html', articles=articles, 
+										editions=editions_content['response']['results'])
 
 
 
