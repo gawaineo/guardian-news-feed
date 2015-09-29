@@ -1,5 +1,6 @@
 from flask import render_template, request, url_for
 import urllib2
+import urllib
 import json
 
 from goose import Goose
@@ -8,7 +9,7 @@ from newsapp import app
 
 EDITIONS_URL = 'http://content.guardianapis.com/editions?q=%s&api-key=uzrj7hgs927dg7qx8s2bqp8q'
 SECTIONS_URL = 'http://content.guardianapis.com/sections?&api-key=uzrj7hgs927dg7qx8s2bqp8q'
-SEARCH_CONTENT_URL = "http://content.guardianapis.com/search?q=%s&api-key=uzrj7hgs927dg7qx8s2bqp8q"
+SEARCH_CONTENT_URL = "http://content.guardianapis.com/search?%s&api-key=uzrj7hgs927dg7qx8s2bqp8q"
 
 @app.route('/', methods=['GET'])
 def report_news():
@@ -26,6 +27,7 @@ def report_news():
 	articles = []
 
 	if search_bar_value is not None:
+		search_bar_value = 'q=' + urllib.quote_plus(search_bar_value)
 		search_req = urllib2.Request(SEARCH_CONTENT_URL % search_bar_value)
 		search_response = urllib2.urlopen(search_req)
 		search_content = json.loads(search_response.read())
