@@ -5,68 +5,24 @@
 
 <div class="container">
   <div class="row">
-  <ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-4">
-    {% for article in articles %}
-      <li>
-        <div class="row image">
-          <div class="large-12 columns">
-            <img src="{{ article.iurl }}" width="300" height="275"/>
-          </div>
-        </div>
-        <div class="row title">
-          <div class="large-12 columns">
-            <a href="{{ article.url }}">
-            {{ article.title }}</a>
-          </div>
-        </div>
-        <div class="row description">
-          <div class="large-12 columns">
-            <p>
-              <h5>
-                {{ article.kwic }}
-                <br>
-                <span class="label">{{ article.domain }}</span>
-                <span class="label">{{ article.date }}</span>
-              </h5>
-            </p>
-          </div>
-        </div>
-        <hr/>
-      </li>
-      {% endfor %}
-  </ul>
-  </div>
-</div>
-<!--
-<div class="container">
-
-  <div class="row sections">
-    <div class="large-12 columns">
+    <div class="small-6 medium-8 large-12 columns">
+      <table id="articles">
+        {% for article in articles %}
+          <tr>
+            <td>
+              <img src="{{ article.iurl }}" width="250" height="250"/>
+            </td>
+            <td>
+              <a href="{{ article.url }}"><h3>{{ article.title }}</h3></a>
+              <span class="label">{{ article.domain }} | {{ article.date }}</span>
+              <hr/>
+              <h5><p>{{ article.kwic }}</p></h5>
+            </td>
+          </tr>
+          {% endfor %}
+      </table>
     </div>
   </div>
-
-{% for article in articles %}
-
-      <div class="row article">
-        <div class="large-4 columns">
-          <img src="{{ article.iurl }}" width="300" height="275"/>
-        </div>
-        <div class="large-8 columns">
-          <p><h2><a href="{{article.url}}">{{ article.title }}</a></h2></p>
-          <hr/>
-          <p><h4>{{ article.kwic }}</h4></p>
-        </div>
-
-      </div>
-
-{% endfor %}
-
-
-
-</div>-->
-
-
-
-
+</div>
 
 {% endblock %}

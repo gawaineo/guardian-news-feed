@@ -35,7 +35,7 @@ def index_page():
 
 
 	for result in search_content['results']:
-		result['date'] = datetime.fromtimestamp(int(result['date'])/1000)
+		result['date'] = datetime.fromtimestamp(int(result['date'])/1000).strftime('%b %d, %Y %I:%M %p %Z')
 		if result['iurl'] == "":
 			print result['iurl']
 			result['iurl'] = "http://cdn.jetcharters.com/bundles/jetcharterspublic/images/image-not-found.jpg"
