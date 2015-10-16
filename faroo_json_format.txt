@@ -1,0 +1,13 @@
+[
+{
+"title": "Facebook Rolls Out Support For 3D Touch, Offering Shortcuts For Posting Statuses, Photos & Videos On ...",
+"kwic": "An update to Facebookâ€™s iOS application, which rolled out earlier this morning, now allows iPhone 6s and 6s Plus owners running the latest version ...",
+"content": "",
+"url": "http://techcrunch.com/2015/10/12/facebook-rolls-out-support-for-3d-touch-offering-shortcuts-for-posting-statuses-photos-videos-on-new-iphones/?ncid=rss",
+"iurl": "https://tctechcrunch2011.files.wordpress.com/2015/10/facebook-3dtouch.jpeg?w=600&h=400",
+"domain": "techcrunch.com",
+"author": "Sarah Perez",
+"news": true,
+"votes": "25",
+"date": 1444662734000,
+"related":[]}]
