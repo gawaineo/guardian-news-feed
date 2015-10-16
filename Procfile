@@ -1,3 +1,3 @@
-web: workon guardian-news-feed"
+web: gunicorn newsapp:newsapp
 
-web: python main.py
+init: python main.py

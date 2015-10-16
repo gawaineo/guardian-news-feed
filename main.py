@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!flask/bin/python
 
 from newsapp import app
 import os
