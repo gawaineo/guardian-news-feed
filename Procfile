@@ -1,3 +1,1 @@
-web: gunicorn newsapp:newsapp
-
-init: python main.py
+web: gunicorn newsapp:app
